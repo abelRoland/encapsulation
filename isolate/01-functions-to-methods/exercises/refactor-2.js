@@ -7,6 +7,7 @@ const mergeArrays = (arr1, arr2) => {
 const obj = {
   array: [3],
   mergeArrays: function (arrToMerge) {
+    this.array = [...this.array, ...arrToMerge];
     // merge the argument into the saved array
   }
 }

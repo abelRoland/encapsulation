@@ -8,6 +8,7 @@ const mergeArrays = (arr1, arr2) => {
 const obj = {
   array: [3],
   mergeArrays: function (arrToMerge) {
+    return [...this.array, ...arrToMerge]
     // merge the internal array with the argument
     //  without modifying the saved array!
 

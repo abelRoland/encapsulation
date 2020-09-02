@@ -3,16 +3,18 @@
 const obj = {
   _arr: [],
   get arr() {
-
+    return [...this._arr];
   },
   merge: function (toMerge) {
-
+    this._arr = [...toMerge, ...this._arr];
   },
   replaceAll: function (newEntry) {
-
+    for (let i = 0; i < this._arr.length; i++) {
+      this._arr[i] = newEntry;
+    }
   },
   getRemixed(mixer) {
-
+    return this._arr.join(mixer);
   },
 };
 
@@ -21,9 +23,7 @@ const test0a = obj.arr !== obj._arr;
 console.assert(test0a, 'Test 0 a');
 
 const test0b = deepCompare(obj.arr, obj._arr);
-console.assert(test0a, 'Test 0 b');
-
-
+console.assert(test0b, 'Test 0 b');
 
 obj.merge([1, 2]);
 const test1 = deepCompare(obj.arr, [1, 2]);

@@ -11,14 +11,19 @@ const obj1 = {
 const obj2 = {
   numbers: [12, 4, 9, 36, 7, 0, -2],
   modulo: 3,
+  get zeroRemainders() {
+    return this.numbers.filter(x => {
+      return x % this.modulo === 0
+    });
+  }
   // write a getter that matches the behavior of .getZeroRemainders
 };
 
-const obj1ZeroRemainders = obj1._;
+const obj1ZeroRemainders = obj1.getZeroRemainders();
 const test1a = deepCompare(obj1ZeroRemainders, [12, 9, 36, 0]);
 console.assert(test1a, 'Test 1 a');
 
-const obj2ZeroRemainders = obj2._;
+const obj2ZeroRemainders = obj2.zeroRemainders;
 const test1b = deepCompare(obj2ZeroRemainders, [12, 9, 36, 0]);
 console.assert(test1b, 'Test 1 b');
 
@@ -26,11 +31,11 @@ console.assert(test1b, 'Test 1 b');
 obj1.modulo = 6;
 obj2.modulo = 6;
 
-const obj1ZeroRemainders2 = _;
+const obj1ZeroRemainders2 = obj1.getZeroRemainders();
 const test2a = deepCompare(obj1ZeroRemainders2, [12, 36, 0]);
 console.assert(test2a, 'Test 2 b');
 
-const obj2ZeroRemainders2 = _;
+const obj2ZeroRemainders2 = obj2.zeroRemainders;
 const test2b = deepCompare(obj2ZeroRemainders2, [12, 36, 0]);
 console.assert(test2b, 'Test 2 b');
 

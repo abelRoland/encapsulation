@@ -1,1 +1,2 @@
-export default "John";
+let user = 'John';
+export default user;

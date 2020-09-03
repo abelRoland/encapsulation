@@ -1,8 +1,8 @@
-let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', _, 'Oct', 'Nov', 'Dec'];
+export let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+ 
+export const MODULES_BECAME_STANDARD_YEAR = 1472;
 
-const MODULES_BECAME_STANDARD_YEAR = 1472;
-
-class User {
+export class User {
   constructor(name) {
     this.name = name;
   }

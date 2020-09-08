@@ -1,10 +1,12 @@
 'use strict';
 
 // this one is extra tricky
-//  move on to Binding Arguments if it's taking more than a few mintues
+//  move on to Binding Arguments if it's taking more than a few minutes
 //  you can always come back to it later
 
-const obj = {};
+const obj = {
+    
+};
 
 // don't change the code below this line
 const boundMethod = obj.method.bind(obj);

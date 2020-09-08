@@ -2,7 +2,13 @@
 
 // psst. use the debugger!
 
-const obj = {};
+const obj = {
+    current: 0,
+    method: function (bound, free) {
+        this.current += this.current + bound + free
+        return this.current;
+      } 
+};
 
 // don't change the code below this line
 const boundMethod = obj.method.bind(obj, 1);

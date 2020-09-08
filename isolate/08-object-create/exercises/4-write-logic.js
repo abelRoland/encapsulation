@@ -3,16 +3,25 @@
 // delegated methods
 const userPrototype = {
   get status() {
-    // render userName and loggedIn status into a string
+    // render userName and loggedIn status into a string 
+    return `${this.state.userName} is ${(this.state.loggedIn === true) 
+      ? 'logged in' : 'logged out' }`;
   },
   logIn: function (passWord) {
     // log the user in if they pass the correct password
+    if (passWord === this.state.password) {
+      this.state.loggedIn = true;
+    }
   },
   logOut: function () {
     // log the user out no matter what
+    this.state.loggedIn = false;
   },
   changePassword: function (oldPassword, newPassword) {
     // if the user is logged in, and the oldPassword is correct, reset their password
+    if (oldPassword === this.state.password && this.state.loggedIn === true) {
+      this.state.password = newPassword;
+    }
   }
 };
 console.log('userPrototype:', userPrototype);

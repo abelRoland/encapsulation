@@ -2,13 +2,22 @@
 
 const calculatorPrototype = {
   get value() {
+    return this.state.value;
 
   },
   add: function (x, y = undefined) {
-
+    if (y === undefined) {
+      this.state.value += x;
+    } else {
+      this.state.value = x + y;
+    }
   },
   subtract: function (x, y = undefined) {
-
+    if (y === undefined) {
+      this.state.value -= x;
+    } else {
+      this.state.value = x - y;
+    }
   }
 };
 console.log('calculatorPrototype:', calculatorPrototype);
@@ -28,7 +37,7 @@ calculator1.subtract(0, 2);
 console.assert(calculator1.value === -2, 'Test 1.b');
 
 calculator1.subtract(3);
-console.assert(calculator1.value === -5, 'Test 1.c');
+console.assert(calculator1.value === 5, 'Test 1.c');
 
 calculator1.add(2, 3);
 console.assert(calculator1.value === 5, 'Test 1.d');

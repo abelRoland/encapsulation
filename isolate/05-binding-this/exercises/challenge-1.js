@@ -2,7 +2,10 @@
 
 // psst. use the debugger!
 
-const writeMe = function (arg) { };
+const writeMe = function (arg) { 
+    return arg + this.thing
+    
+};
 
 // don't change any code below this comment
 const obj1 = { thing: 1 };

@@ -16,16 +16,16 @@
       state: {
         word: ''
       },
-      get _() { return this._._ },
-      set _(newOne) { this._._ = newOne },
-      _: function () {
+      get word() { return this.state.word },
+      set word(newOne) { this.state.word = newOne },
+      reverseWord: function () {
         this.word = this.word
           .split('').reverse().join('');
       },
-      _: function () {
-        this.word = this.word._(/[^a-zA-Z]/gi, '');
+      keepLetters: function () {
+        this.word = this.word.replace(/[^a-zA-Z]/gi, '');
       },
-      handler: function (_, _) {
+      handler: function (element, event) {
         // debugger;
         const newWord = event.target.value;
         this.word = newWord;
@@ -33,17 +33,17 @@
         this.keepLetters();
         this.reverseWord();
 
-        element.innerHTML = _.word;
+        element.innerHTML = this.word;
       },
       render: function (id) {
-        // debugger;
+         debugger;
         const outputEl = document.createElement('p');
-        outputEl.innerHTML = _.word;
+        outputEl.innerHTML = this.word;
 
         const inputEl = document.createElement('input');
         inputEl.type = 'text';
-        inputEl.placeholder = '_';
-        inputEl.onkeyup = _._._(_, _);
+        inputEl.placeholder = 'reverse';
+        inputEl.onkeyup = this.handler.bind(this, outputEl);
 
         const container = document.createElement('div');
         container.id = id;

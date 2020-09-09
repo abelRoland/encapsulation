@@ -15,10 +15,12 @@
     const app = {
       state: {},
       set: function (key, value) {
-        this._[_] = _;
+        this.state[key] = value;
       },
       remove: function (key) {
-        delete _._[_];
+        debugger
+        delete this.state[key];
+        this.renderState();
       },
       renderState: function () {
         const liElements = Object.keys(this.state)
@@ -26,7 +28,7 @@
           .reduce((allLis, liStr) => allLis + liStr, '');
         return '<ul>' + liElements + '\n</ul>';
       },
-      handler: function (_, _) {
+      handler: function (display, event) {
         // debugger;
         const action = event.target.value;
         const key = event.target.form.keyInput.value;
@@ -43,27 +45,27 @@
       render: function (id) {
         // debugger;
         const displayEl = document.createElement('p');
-        displayEl.innerHTML = this._();
+        displayEl.innerHTML = this.renderState();
 
         const keyInputEl = document.createElement('input');
         keyInputEl.type = 'text';
-        keyInputEl.name = '_';
+        keyInputEl.name = 'keyInput';
         keyInputEl.placeholder = 'key';
 
         const valueInputEl = document.createElement('input');
         valueInputEl.type = 'text';
-        valueInputEl.name = '_';
+        valueInputEl.name = 'valueInput';
         valueInputEl.placeholder = 'value';
 
         const setButtonEl = document.createElement('input');
         setButtonEl.type = 'button';
-        setButtonEl.value = '_';
-        setButtonEl.onclick = _._._(_, _);
+        setButtonEl.value = 'set key';
+        setButtonEl.onclick = this.handler.bind(this, displayEl);
 
         const removeButtonEl = document.createElement('input');
         removeButtonEl.type = 'button';
-        removeButtonEl.value = '_';
-        removeButtonEl.onclick = _._._(_, _);
+        removeButtonEl.value = 'remove key';
+        removeButtonEl.onclick = this.remove.bind(this, keyInputEl.value);
 
         const formEl = document.createElement('form');
         formEl.appendChild(keyInputEl);

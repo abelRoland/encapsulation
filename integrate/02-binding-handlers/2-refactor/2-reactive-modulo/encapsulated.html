@@ -14,27 +14,68 @@
 
     const app = {
       state: {
-
+        number: 3,
+        modulo: 2,
+        result: 1
       },
-      updateState: function (num, mod) {
-
-      },
-      handler: function (output, event) {
-        // read input from user
-
-        // update state
-        this.updateState(newNum, newMod);
-
+      
+      updateResult: function () {
+        // update result 
+        this.state.result = this.state.number % this.state.modulo;
         // render state to the UI
-
+        document.getElementById('output-element')
+        .innerHTML = this.state.result;
+      },
+      setNumber: function (element) {
+        // read input from user
+        //debugger
+        const newNum = Number(element.value);
+        this.state.number = newNum;
+        this.updateResult();        
+      },
+      setModulo: function (element) {
+        // read input from user
+        //debugger
+        const newMod = Number(element.value);
+        this.state.modulo = newMod;
+        this.updateResult();   
       },
       render: function (id) {
+        const outputEl = document.createElement('code');
+        outputEl.marginLeft = '5%';
+        outputEl.id = 'output-element';
+        outputEl.innerHTML = this.state.result;
 
+        const numInputEl = document.createElement('input');
+        numInputEl.type = 'number';
+        numInputEl.name = 'newNum';
+        numInputEl.value = this.state.number;
+        numInputEl.onclick = this.setNumber.bind(this, numInputEl);
+
+        const modInputEl = document.createElement('input');
+        modInputEl.type = 'number';
+        modInputEl.name = 'newMod';
+        modInputEl.value = this.state.modulo;
+        modInputEl.onclick = this.setModulo.bind(this, modInputEl);
+
+        const formEl = document.createElement('form');
+        formEl.appendChild(numInputEl);
+        formEl.appendChild(document.createTextNode(' % '));
+        formEl.appendChild(modInputEl);
+        formEl.appendChild(document.createTextNode(' = '));
+        formEl.appendChild(outputEl);
+
+        const container = document.createElement('div');
+        container.appendChild(formEl);
+        container.id = id;
+
+        return container;
       },
     }
   </script>
 
   <script id='tests'>
+    /*
     const assert = (assertion, message) => {
       if (assertion) {
         console.log('%cPASS: ' + message, 'color:green');
@@ -65,7 +106,7 @@
       modulo: 2,
       result: 1
     };
-    assert(JSON.stringify(app.state) === '{"number":3,"modulo":2,"result":1}', 'Test 6');
+    assert(JSON.stringify(app.state) === '{"number":3,"modulo":2,"result":1}', 'Test 6'); */
   </script>
 
   <script id='init'>

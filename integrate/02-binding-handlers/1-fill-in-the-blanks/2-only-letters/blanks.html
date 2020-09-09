@@ -17,29 +17,29 @@
         word: ''
       },
       keepLetters: function () {
-        _._._ = _._._.replace(/[^a-zA-Z]/gi, '');
+        this.state.word = this.state.word.replace(/[^a-zA-Z]/gi, '');
       },
-      handler: function (_, _) {
+      handler: function (element, event) {
         // debugger;
-        const newWord = _.target.value;
-        this._._ = newWord;
+        const newWord = event.target.value;
+        this.state.word = newWord;
         this.keepLetters();
-        element.innerHTML = _._.word;
+        element.innerHTML = this.state.word;
       },
       render: function (id) {
         // debugger;
         const outputEl = document.createElement('p');
-        outputEl.innerHTML = _.state._;
+        outputEl.innerHTML = this.state.word;
 
         const inputEl = document.createElement('input');
         inputEl.type = 'text';
         inputEl.placeholder = 'type here';
-        inputEl.onkeyup = this.handler._(_, _);
+        inputEl.onkeyup = this.handler.bind(this, outputEl);
 
         const container = document.createElement('div');
         container.id = id;
-        container.appendChild(_);
-        container.appendChild(_);
+        container.appendChild(inputEl);
+        container.appendChild(outputEl);
 
         return container;
       },

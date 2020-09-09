@@ -15,17 +15,46 @@
       state: {
         charCode: 0
       },
-      set code(newNum) {
-
+      set: function (newNumber) {
+        this.state.charCode = newNumber;
       },
+
       get char() {
-
+        return this.charCode;
       },
-      handler: function (display, event) {
+      handler: function (event) {
+        debugger
+      const inputNumber = Number(event.target.value);
 
+      this.set(inputNumber);
+
+      this.state.charCode = inputNumber // ((inputNumber % 256) + 256) % 256;
+
+      const charFromCode = String.fromCharCode(this.state.charCode);
+
+        this.render(charFromCode)
+      
+       
       },
-      render: function (id) {
+      render: function (charFromCode) {
+        
+        const outputEl = document.createElement('code');
+        outputEl.style.marginLeft = '8%';
+        outputEl.id = 'output-element';
+        outputEl.innerHTML = charFromCode;
 
+        const inputEl = document.createElement('input');
+        inputEl.type = 'number';
+        inputEl.value = '0';
+        inputEl.onchange = this.handler.bind(inputEl);
+
+        const container = document.createElement('div');
+        // container.id = id;
+        container.appendChild(inputEl);
+        container.appendChild(outputEl);
+
+        return container;
+      
       },
     }
 

@@ -13,34 +13,34 @@
 
   <script id='app'>
     const app = {
-      _: {
+      state: {
         biggest: -Infinity,
         smallest: Infinity,
         all: []
       },
-      _: function (biggestEl, smallestEl, event) {
+      handler: function (biggestEl, smallestEl, event) {
         // debugger;
-        const newNumberStr = event.target.form._._;
+        const newNumberStr = event.target.form.newNumber.value;
         const newNumber = Number(newNumberStr);
 
-        _._._.push(newNumber);
+        this.state.all.push(newNumber);
 
-        if (newNumber > this._._) {
-          _._.biggest = newNumber;
-          biggestEl.innerHTML = this._._;
+        if (newNumber > this.state.biggest) {
+          this.state.biggest = newNumber;
+          biggestEl.innerHTML = this.state.biggest;
         }
-        if (newNumber < this._._) {
-          _._.smallest = newNumber;
-          smallestEl.innerHTML = this._._;
+        if (newNumber < this.state.smallest) {
+          this.state.smallest = newNumber;
+          smallestEl.innerHTML = this.state.smallest;
         }
       },
-      _: function (id) {
+      render: function (id) {
         // debugger;
         const biggestNumEl = document.createElement('code');
-        biggestNumEl.innerHTML = this.state._;
+        biggestNumEl.innerHTML = this.state.biggest;
 
         const smallestNumEl = document.createElement('code');
-        smallestNumEl.innerHTML = this.state._;
+        smallestNumEl.innerHTML = this.state.smallest;
 
         const rangeEl = document.createElement('p');
         rangeEl.appendChild(smallestNumEl);
@@ -55,7 +55,7 @@
         const buttonEl = document.createElement('input');
         buttonEl.type = 'button';
         buttonEl.value = 'add number';
-        buttonEl.onclick = this.handler.bind(_, _, _);
+        buttonEl.onclick = this.handler.bind(this, biggestNumEl, smallestNumEl);
 
         const formEl = document.createElement('form');
         formEl.appendChild(inputEl);

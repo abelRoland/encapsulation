@@ -23,19 +23,19 @@
         red: 0,
         blue: 0
       },
-      handler: function (_, _) {
+      handler: function (element, event) {
         // debugger;
         const preRed = Number(event.x);
         const preBlue = Number(event.y);
-        this._._ = (preRed / window.innerWidth) * 255;
-        this._._ = (preBlue / window.innerHeight) * 255;
-        element.style.backgroundColor = `rgb(${_._.red}, 0, ${_._.blue})`;
+        this.state.red = (preRed / window.innerWidth) * 255;
+        this.state.blue = (preBlue / window.innerHeight) * 255;
+        element.style.backgroundColor = `rgb(${app.state.red}, 0, ${app.state.blue})`;
       },
-      render: function (_) {
+      render: function (id) {
         // debugger;
         const container = document.createElement('div');
         container.id = id;
-        container.onmousemove = this._._(_, container);
+        container.onmousemove = this.handler.bind(this, container);
 
         container.className = 'full-screen';
 

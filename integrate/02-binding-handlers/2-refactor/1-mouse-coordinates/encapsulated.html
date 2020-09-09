@@ -21,14 +21,26 @@
     const app = {
       state: {
       },
-      renderState: function () {
-
-      },
+      renderState: function(data) {
+      return `X: ${data.x}, Y: ${data.y}`;
+    },
+     
       handler: function (element, event) {
-
+        // debugger;
+        this.state.x = Number(event.x);
+        this.state.y = Number(event.y);
+        element.innerHTML = `${this.state.x}, ${this.state.y}`;
       },
       render: function (id) {
+        // debugger;
+        const container = document.createElement('div');
+        container.id = id;
+        container.innerHTML = `${this.state.x}, ${this.state.y}`;
+        // binding handler to this
+        container.onmousemove = this.handler.bind(this, container);
+        container.className = 'full-screen';
 
+        return container;
       },
     }
   </script>

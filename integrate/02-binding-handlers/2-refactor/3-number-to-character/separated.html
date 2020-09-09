@@ -20,7 +20,7 @@
 
   <script id='handler'>
     const handler = (event) => {
-
+      
       const inputNumber = Number(event.target.value);
       state.charCode = ((inputNumber % 256) + 256) % 256;
 
